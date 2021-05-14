@@ -1,6 +1,5 @@
 <template>
   <div>
-    <the-header></the-header>
     <!-- <badge-list></badge-list>
     <user-info
       :full-name="activeUser.name"
@@ -13,26 +12,26 @@
         <p>{{ slotProps.anotherProp}}</p>
       </template>
     </course-goals> -->
-    <button @click.prevent="setSelectedComponent('active-goals')">Active Goals</button>
-    <button @click="setSelectedComponent('manage-goals')">Manage Goals</button>
     <!-- <active-goals v-if="selectedComponent === 'active-goals'"></active-goals>
     <manage-goals v-if="selectedComponent === 'manage-goals'"></manage-goals> -->
-    <component v-bind:is="selectedComponent"></component>
+    <button v-on:click="setSelectedComponent('active-goals')">Active Goals</button>
+    <button v-on:click="setSelectedComponent('manage-goals')">Manage Goals</button>
+    <component :is="selectedComponent"></component>
   </div>
 </template>
 
 <script>
 // import BadgeList from './components/BadgeList.vue';
-import TheHeader from './components/TheHeader.vue';
+// import TheHeader from './components/TheHeader.vue';
 // import UserInfo from './components/UserInfo.vue';
 // import CourseGoals from './components/CourseGoals.vue';
-import ActiveGoals from './components/ActiveGoals.vue';
 import ManageGoals from './components/ManageGoals.vue';
+import ActiveGoals from './components/ActiveGoals.vue';
 
 export default {
   components: {
     // 'badge-list': BadgeList,
-    'the-header': TheHeader,
+    // 'the-header': TheHeader,
     ManageGoals,
     ActiveGoals,
     // 'user-info': UserInfo,
@@ -48,11 +47,9 @@ export default {
       },
     };
   },
-  method: {
-    setSelectedComponent() {
-      console.log('inside');
-      // console.log(cmp);
-      // this.selectedComponent = cmp;
+  methods: {
+    setSelectedComponent(cmp) {
+      this.selectedComponent = cmp;
     },
   },
 };
